@@ -1,5 +1,6 @@
+//pour le telechargement des fichiers
 const multer = require('multer');
-
+//format d'image accepte 
 const MIME_TYPES = {
     'image/jpg': 'jpg',
     'image/jpeg': 'jpg',
