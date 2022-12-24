@@ -6,17 +6,21 @@ const userRoutes = require('./routes/user');
 
 const path = require('path');
 const app = express();
+//morgan logger
+const morgan = require('morgan')
+app.use(morgan("dev"))
 
-//rate-limit
+
+//rate-limit 
 const rateLimit = require('express-rate-limit')
 const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 1000, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
-  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  windowMs: 15 * 60 * 1000,
+  max: 1000,
+  standardHeaders: true,
+  legacyHeaders: false,
 })
 
-// Apply the rate limiting middleware to API calls only
+
 app.use(apiLimiter)
 
 // helmet
